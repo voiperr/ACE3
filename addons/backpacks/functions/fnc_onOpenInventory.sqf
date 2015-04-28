@@ -16,8 +16,11 @@ private ["_unit", "_backpack"];
 _unit = _this select 0;
 _backpack = _this select 1;
 
+// don't access the inventory of locked objects
+if (_backpack getVariable ["ACE_isLocked", false]) exitWith {true};
+
 // exit if the target is not a backpack
-if !([_backpack] call FUNC(isBackpack)) exitWith {};
+if !([_backpack] call FUNC(isBackpack)) exitWith {false};
 
 // get the unit that wears the backpack object
 private "_target";

@@ -10,5 +10,6 @@ PREP(backpackToBack);
 PREP(backpackToFront);
 PREP(playerVehicleChanged);
 PREP(handleRespawn);
+PREP(wearingBackpackOnFrontPFH);
 
 ADDON = true;

@@ -15,12 +15,12 @@ private ["_unit", "_backpack"];
 
 _unit = _this select 0;
 
-for "_i" from 0 to (count attachedObjects _unit - 1) step 1 do {
-    if (attachedObjects _unit select _i isKindOf "groundWeaponHolder") then {
-        _backpack = attachedObjects _unit select _i;
-        detach _backpack;
-    };
-};
+_backpack = _unit getVariable ["ACE_Backpack", objNull];
 
-_unit action ["AddBag",_backpack,(backpackCargo _backpack) select 0];
-_unit setVariable ["ACE_Backpack", objNull];
+// no need to detach, fixes bug that makes backpack disappear
+//detach _backpack;
+
+_unit action ["AddBag", _backpack, backpackCargo _backpack select 0];
+
+// GWH will be objNull anyway
+//_unit setVariable ["ACE_Backpack", objNull];
