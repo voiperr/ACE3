@@ -1,0 +1,1 @@
+#include "\z\ace\addons\xeh_tng\script_component.hpp"

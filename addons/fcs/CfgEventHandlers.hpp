@@ -1,16 +1,16 @@
-class Extended_PreInit_EventHandlers {
+class TNG_Preinit_EventHandlers {
     class ADDON {
         init = QUOTE(call COMPILE_FILE(XEH_preInit));
     };
 };
 
-class Extended_PostInit_EventHandlers {
+class TNG_PostInit_EventHandlers {
     class ADDON {
         clientInit = QUOTE(call COMPILE_FILE(XEH_clientInit));
     };
 };
 
-class Extended_Init_EventHandlers {
+class TNG_Init_EventHandlers {
     class Tank {
         class ADDON {
             serverInit = QUOTE(_this call FUNC(vehicleInit));
@@ -76,7 +76,7 @@ class Extended_Respawn_EventHandlers {
     };
 };
 
-class Extended_FiredBIS_EventHandlers {
+class TNG_FiredBIS_EventHandlers {
     class Tank {
         class ADDON {
             firedBIS = QUOTE(_this call FUNC(firedEH));

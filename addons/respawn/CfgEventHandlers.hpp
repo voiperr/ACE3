@@ -1,11 +1,11 @@
 
-class Extended_PreInit_EventHandlers {
+class TNG_Preinit_EventHandlers {
     class ADDON {
         init = QUOTE(call COMPILE_FILE(XEH_preInit));
     };
 };
 
-class Extended_PostInit_EventHandlers {
+class TNG_PostInit_EventHandlers {
     class ADDON {
         init = QUOTE(call COMPILE_FILE(XEH_postInit));
     };
@@ -27,7 +27,7 @@ class Extended_Respawn_EventHandlers {
     };
 };
 
-class Extended_Init_EventHandlers {
+class TNG_Init_EventHandlers {
     class ACE_Rallypoint_West {
         class ADDON {
             init = QUOTE((_this select 0) setFlagTexture '\A3\Data_F\Flags\Flag_nato_CO.paa'; [ARR_3(_this select 0,'',west)] call FUNC(initRallypoint));
