@@ -25,10 +25,8 @@ PARAMS_1(_unit);
 _flashlights = [];
 
 {
-    if (isText (configFile >> "CfgWeapons" >> _x >> "ItemInfo" >> "FlashLight" >> "ACE_Flashlight_Colour")) then {
-        if !(_x in _flashlights) then {
+    if ((isText (configFile >> "CfgWeapons" >> _x >> "ItemInfo" >> "FlashLight" >> "ACE_Flashlight_Colour")) && !(_x in _flashlights)) then {
             _flashlights pushBack _x;
-        };
     };
 } forEach (items _unit);
 
