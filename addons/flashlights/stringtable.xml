@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project name="ACE">
+    <Package name="Flashlights">
+        <Key ID="STR_ACE_Flashlights_MX993_Description">
+            <English>Flashlight with red filter. For use on map.</English>
+        </Key>
+        <Key ID="STR_ACE_Flashlights_XL50_Description">
+            <English>White mini flashlight. For use on map.</English>
+        </Key>
+        <Key ID="STR_ACE_Flashlights_KSF1_Description">
+            <English>Flashlight with red filter. For use on map.</English>
+        </Key>
+    </Package>
+</Project>
