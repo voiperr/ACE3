@@ -4,7 +4,7 @@ class CfgWeapons {
     class ACE_ItemCore;
     class InventoryItem_Base_F;
     class InventoryFlashlightItem_Base_F;
-    
+
     class acc_flashlight: ItemCore {
         class ItemInfo: InventoryFlashlightItem_Base_F {
             class Flashlight {
@@ -15,7 +15,7 @@ class CfgWeapons {
     };
 
     class ACE_Flashlight_MX993: ACE_ItemCore {
-        displayName = "Fulton MX-993";
+        displayName = CSTRING(MX993_DisplayName);
         descriptionShort = CSTRING(MX993_Description);
         model = "\A3\weapons_f\acc\accv_Flashlight_F";
         picture = PATHTOF(UI\mx993_ca.paa);
@@ -28,9 +28,9 @@ class CfgWeapons {
             };
         };
     };
-    
+
     class ACE_Flashlight_KSF1: ACE_ItemCore {
-        displayName = "KSF-1";
+        displayName = CSTRING(KSF1_DisplayName);
         descriptionShort = CSTRING(KSF1_Description);
         model = "\A3\weapons_f\acc\accv_Flashlight_F";
         picture = PATHTOF(UI\ksf1_ca.paa);
@@ -43,9 +43,9 @@ class CfgWeapons {
             };
         };
     };
-    
+
     class ACE_Flashlight_XL50: ACE_ItemCore {
-        displayName = "Maglite XL50";
+        displayName = CSTRING(KSF1_DisplayName);
         descriptionShort = CSTRING(XL50_Description);
         model = "\A3\weapons_f\acc\accv_Flashlight_F";
         picture = PATHTOF(UI\xl50_ca.paa);

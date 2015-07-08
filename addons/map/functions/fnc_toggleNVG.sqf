@@ -26,7 +26,7 @@ switch (_switch) do {
     case 0: {
         ACE_player action ["NVGogglesOff"];
     };
-    
+
     case 1: {
         ACE_player action ["NVGoggles"];
     };

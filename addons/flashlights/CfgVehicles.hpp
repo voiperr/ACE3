@@ -3,9 +3,53 @@ class CfgVehicles {
     class CAManBase: Man {
         class ACE_SelfActions {
             //todo: add flashlight attach actions
-        }; 
+        };
     };
-    
+
+    class Item_Base_F;
+
+    class ACE_Flashlight_MX993Item: Item_Base_F {
+        scope = 2;
+        scopeCurator = 2;
+        displayName = CSTRING(MX993_DisplayName);
+        author = ECSTRING(common,ACETeam);
+        vehicleClass = "WeaponAccessories";
+        class TransportItems {
+            class ACE_Flashlight_MX993 {
+                name = "ACE_Flashlight_MX993";
+                count = 1;
+            };
+        };
+    };
+
+    class ACE_Flashlight_KSF1Item: Item_Base_F {
+        scope = 2;
+        scopeCurator = 2;
+        displayName = CSTRING(KSF1_DisplayName);
+        author = ECSTRING(common,ACETeam);
+        vehicleClass = "WeaponAccessories";
+        class TransportItems {
+            class ACE_Flashlight_KSF1 {
+                name = "ACE_Flashlight_KSF1";
+                count = 1;
+            };
+        };
+    };
+
+    class ACE_Flashlight_XL50Item: Item_Base_F {
+        scope = 2;
+        scopeCurator = 2;
+        displayName = CSTRING(XL50_DisplayName);
+        author = ECSTRING(common,ACETeam);
+        vehicleClass = "WeaponAccessories";
+        class TransportItems {
+            class ACE_Flashlight_XL50 {
+                name = "ACE_Flashlight_XL50";
+                count = 1;
+            };
+        };
+    };
+
     class NATO_Box_Base;
     class EAST_Box_Base;
     class IND_Box_Base;
