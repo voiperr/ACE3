@@ -8,15 +8,15 @@ class CfgVehicles {
 
     class Item_Base_F;
 
-    class ACE_Flashlight_MX993Item: Item_Base_F {
+    class ACE_Flashlight_MX991Item: Item_Base_F {
         scope = 2;
         scopeCurator = 2;
-        displayName = CSTRING(MX993_DisplayName);
+        displayName = CSTRING(MX991_DisplayName);
         author = ECSTRING(common,ACETeam);
         vehicleClass = "WeaponAccessories";
         class TransportItems {
-            class ACE_Flashlight_MX993 {
-                name = "ACE_Flashlight_MX993";
+            class ACE_Flashlight_MX991 {
+                name = "ACE_Flashlight_MX991";
                 count = 1;
             };
         };
@@ -57,7 +57,7 @@ class CfgVehicles {
 
     class Box_NATO_Support_F: NATO_Box_Base {
         class TransportItems {
-            MACRO_ADDITEM(ACE_Flashlight_MX993,12);
+            MACRO_ADDITEM(ACE_Flashlight_MX991,12);
         };
     };
 
@@ -75,13 +75,13 @@ class CfgVehicles {
 
     class Box_FIA_Support_F: FIA_Box_Base_F {
         class TransportItems {
-            MACRO_ADDITEM(ACE_Flashlight_MX993,12);
+            MACRO_ADDITEM(ACE_Flashlight_MX991,12);
         };
     };
 
     class ACE_Box_Misc: Box_NATO_Support_F {
         class TransportItems {
-            MACRO_ADDITEM(ACE_Flashlight_MX993,12);
+            MACRO_ADDITEM(ACE_Flashlight_MX991,12);
             MACRO_ADDITEM(ACE_Flashlight_KSF1,12);
             MACRO_ADDITEM(ACE_Flashlight_XL50,12);
         };

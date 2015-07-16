@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project name="ACE">
     <Package name="Flashlights">
-        <Key ID="STR_ACE_Flashlights_MX993_DisplayName">
-            <English>Fulton MX-993</English>
+        <Key ID="STR_ACE_Flashlights_MX991_DisplayName">
+            <English>Fulton MX-991</English>
         </Key>
-        <Key ID="STR_ACE_Flashlights_MX993_Description">
+        <Key ID="STR_ACE_Flashlights_MX991_Description">
             <English>Flashlight with red filter. For use on map.</English>
         </Key>
         <Key ID="STR_ACE_Flashlights_XL50_DisplayName">

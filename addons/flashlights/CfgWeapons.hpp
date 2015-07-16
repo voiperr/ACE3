@@ -14,11 +14,11 @@ class CfgWeapons {
         };
     };
 
-    class ACE_Flashlight_MX993: ACE_ItemCore {
-        displayName = CSTRING(MX993_DisplayName);
-        descriptionShort = CSTRING(MX993_Description);
+    class ACE_Flashlight_MX991: ACE_ItemCore {
+        displayName = CSTRING(MX991_DisplayName);
+        descriptionShort = CSTRING(MX991_Description);
         model = "\A3\weapons_f\acc\accv_Flashlight_F";
-        picture = PATHTOF(UI\mx993_ca.paa);
+        picture = PATHTOF(UI\mx991_ca.paa);
         scope = 2;
         class ItemInfo: InventoryItem_Base_F {
             mass = 1;
@@ -45,7 +45,7 @@ class CfgWeapons {
     };
 
     class ACE_Flashlight_XL50: ACE_ItemCore {
-        displayName = CSTRING(KSF1_DisplayName);
+        displayName = CSTRING(XL50_DisplayName);
         descriptionShort = CSTRING(XL50_Description);
         model = "\A3\weapons_f\acc\accv_Flashlight_F";
         picture = PATHTOF(UI\xl50_ca.paa);
