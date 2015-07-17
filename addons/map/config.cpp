@@ -27,6 +27,7 @@ class RscEdit;
 #include "CfgEventHandlers.hpp"
 #include "CfgMarkers.hpp"
 #include "CfgVehicles.hpp"
+#include "CfgAmmo.hpp"
 
 class RscMapControl {
     maxSatelliteAlpha = 0.5;

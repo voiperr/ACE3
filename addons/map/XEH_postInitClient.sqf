@@ -8,19 +8,6 @@ LOG(MSG_INIT);
 // Calculate the maximum zoom allowed for this map
 call FUNC(determineZoom);
 
-GVAR(mousePos) = [0.5,0.5];
-GVAR(flashlightInUse) = "";
-GVAR(flashlightActions) = [];
-GVAR(aceNVG) = ["ace_nightvision"] call EFUNC(common,isModLoaded);
-
-["playerInventoryChanged", {
-    _flashlights = [ACE_player] call FUNC(getUnitFlashlights);
-    if !(GVAR(flashlightInUse) in _flashlights) then {
-        GVAR(flashlightInUse) = "";
-    };
-    [_flashlights] call FUNC(compileFlashlightMenu);
-}] call EFUNC(common,addEventHandler);
-
 // This spawn is probably worth keeping, as pfh don't work natively on the briefing screen and IDK how reliable the hack we implemented for them is.
 // The thread dies as soon as the mission start, so it's not really compiting for scheduler space.
 [] spawn {
@@ -31,22 +18,8 @@ GVAR(aceNVG) = ["ace_nightvision"] call EFUNC(common,isModLoaded);
     GVAR(lastStillTime) = ACE_time;
     GVAR(isShaking) = false;
     
-    //map size/scale
-    _worldNum = (configFile >> "CfgWorlds" >> worldName >> "mapSize");
-    _worldSize = if (isNumber _worldNum) then {
-        getNumber _worldNum
-    } else {
-        switch (worldName) do {
-            case ("VR"): {8192};
-            case ("smd_sahrani_a3"): {20480};
-            case ("Takistan"): {12800};
-            case ("Chernarus"): {15360};
-            case ("Utes"): {5120};
-        };
-    };
-    
     //map sizes are multiples of 1280
-    GVAR(worldSize) = _worldSize / 1280;
+    GVAR(worldSize) = worldSize / 1280;
 
     //Allow panning the lastStillPosition while mapShake is active
     GVAR(rightMouseButtonLastPos) = [];
@@ -87,5 +60,42 @@ GVAR(aceNVG) = ["ace_nightvision"] call EFUNC(common,isModLoaded);
     if (GVAR(BFT_Enabled)) then {
         GVAR(BFT_markers) = [];
         [FUNC(blueForceTrackingUpdate), GVAR(BFT_Interval), []] call CBA_fnc_addPerFrameHandler;
+    };
+    
+    //flashlight settings if illumination
+    if (GVAR(mapIllumination)) then {
+        GVAR(mousePos) = [0.5,0.5];
+        GVAR(flashlightInUse) = "";
+        GVAR(flashlightActions) = [];
+        GVAR(aceNVG) = ["ace_nightvision"] call EFUNC(common,isModLoaded);
+        GVAR(glow) = objNull;
+
+        ["playerInventoryChanged", {
+            _flashlights = [ACE_player] call FUNC(getUnitFlashlights);
+            if !(GVAR(flashlightInUse) in _flashlights) then {
+                GVAR(flashlightInUse) = "";
+            };
+            [_flashlights] call FUNC(compileFlashlightMenu);
+        }] call EFUNC(common,addEventHandler);
+
+        //we check map state via a PFH, since there's no way to have a map close EH
+        [{
+            if (visibleMap) then {
+                if (GVAR(flashlightInUse) != "") then {
+                    if (isNull GVAR(glow)) then {
+                        [GVAR(flashlightInUse)] call FUNC(flashlightGlow);
+                    };
+                } else {
+                    if (!isNull GVAR(glow)) then {
+                        [""] call FUNC(flashlightGlow);
+                    };
+                };
+            } else {
+                if (!isNull GVAR(glow)) then {
+                    [""] call FUNC(flashlightGlow);
+                };
+            };
+        }, 0] call CBA_fnc_addPerFrameHandler;
+    
     };
 }] call EFUNC(common,addEventHandler);
