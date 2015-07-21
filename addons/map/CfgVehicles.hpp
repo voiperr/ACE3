@@ -5,7 +5,7 @@ class CfgVehicles {
             class ACE_MapFlashlight {
                 displayName = CSTRING(Action_Flashlights);
                 icon = QUOTE(\a3\ui_f\data\IGUI\Cfg\VehicleToggles\lightsiconon_ca.paa);
-                condition = QUOTE(visibleMap && (count ([ACE_player] call FUNC(getUnitFlashlights)) > 0));
+                condition = QUOTE(GVAR(mapIllumination) && visibleMap && (count ([ACE_player] call FUNC(getUnitFlashlights)) > 0));
                 statement = "true";
                 exceptions[] = {"isNotDragging", "notOnMap", "isNotInside", "isNotSitting"};
                 insertChildren = QUOTE(_this call DFUNC(compileFlashlightMenu));
@@ -15,7 +15,7 @@ class CfgVehicles {
             class ACE_MapNVG {
                 displayName = CSTRING(Action_NVG);
                 icon = QUOTE(\a3\ui_f\data\gui\Rsc\RscDisplayArsenal\nvgs_ca.paa);
-                condition = QUOTE(visibleMap && ((getText (configFile >> 'CfgWeapons' >> (hmd ACE_player) >> 'simulation')) == 'NVGoggles'));
+                condition = QUOTE(GVAR(mapIllumination) && visibleMap && ((getText (configFile >> 'CfgWeapons' >> (hmd ACE_player) >> 'simulation')) == 'NVGoggles'));
                 statement = "true";
                 exceptions[] = {"isNotDragging", "notOnMap", "isNotInside", "isNotSitting"};
                 showDisabled = 0;
