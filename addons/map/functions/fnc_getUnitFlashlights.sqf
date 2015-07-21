@@ -1,22 +1,18 @@
 /*
-    Author:
-    voiper
-
-    Description:
-    Check a unit for any flashlights that can be used on map.
-
-    Arguments:
-    0: Unit to check <Object>
-
-    Example:
-    [unit] call ace_map_fnc_getUnitFlashlights;
-
-    Return Value:
-    Flashlight classnames (empty for none) <Array>
-
-    Public:
-    No
-*/
+ * Author: voiper
+ * Check a unit for any flashlights that can be used on map.
+ *
+ * Arguments:
+ * 0: Unit to check <OBJECT>
+ *
+ * Return value:
+ * Flashlight classnames (empty for none) <ARRAY>
+ *
+ * Example:
+ * [unit] call ace_map_fnc_getUnitFlashlights;
+ *
+ * Public: No
+ */
 
 #include "script_component.hpp"
 

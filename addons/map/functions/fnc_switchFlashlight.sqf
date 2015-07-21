@@ -1,22 +1,18 @@
 /*
-    Author:
-    voiper
-
-    Description:
-    Switch flashlight.
-
-    Arguments:
-    0: Flashlight ("" for off) <String>
-
-    Example:
-    ["ACE_Flashlight_MX991"] call ace_map_fnc_switchFlashlight;
-
-    Return Value:
-    None
-
-    Public:
-    No
-*/
+ * Author: voioper
+ * Switch flashlight.
+ *
+ * Arguments:
+ * 0: Flashlight classname ("" for off) <STRING>
+ *
+ * Return value:
+ * None
+ *
+ * Example:
+ * ["ACE_Flashlight_MX991"] call ace_map_fnc_switchFlashlight;
+ *
+ * Public: No
+ */
 
 #include "script_component.hpp"
 
