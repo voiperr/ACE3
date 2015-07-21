@@ -4,16 +4,17 @@ class CfgVehicles {
         class ACE_SelfActions {
             class ACE_MapFlashlight {
                 displayName = CSTRING(Action_Flashlights);
-                icon = "\a3\ui_f\data\IGUI\Cfg\VehicleToggles\lightsiconon_ca.paa";
+                icon = QUOTE(\a3\ui_f\data\IGUI\Cfg\VehicleToggles\lightsiconon_ca.paa);
                 condition = QUOTE(visibleMap && (count ([ACE_player] call FUNC(getUnitFlashlights)) > 0));
                 statement = "true";
                 exceptions[] = {"isNotDragging", "notOnMap", "isNotInside", "isNotSitting"};
+                insertChildren = QUOTE(_this call DFUNC(compileFlashlightMenu));
                 showDisabled = 0;
                 priority = 99;
             };
             class ACE_MapNVG {
                 displayName = CSTRING(Action_NVG);
-                icon = "\a3\ui_f\data\gui\Rsc\RscDisplayArsenal\nvgs_ca.paa";
+                icon = QUOTE(\a3\ui_f\data\gui\Rsc\RscDisplayArsenal\nvgs_ca.paa);
                 condition = QUOTE(visibleMap && ((getText (configFile >> 'CfgWeapons' >> (hmd ACE_player) >> 'simulation')) == 'NVGoggles'));
                 statement = "true";
                 exceptions[] = {"isNotDragging", "notOnMap", "isNotInside", "isNotSitting"};
@@ -24,7 +25,7 @@ class CfgVehicles {
                     displayName = CSTRING(Action_NVGOn);
                     icon = "";
                     condition = QUOTE(currentVisionMode ACE_player == 0);
-                    statement = QUOTE([1] call FUNC(toggleNVG));
+                    statement = QUOTE([1] call DFUNC(toggleNVG));
                     exceptions[] = {"isNotDragging", "notOnMap", "isNotInside", "isNotSitting"};
                     showDisabled = 1;
                     priority = 0;
@@ -34,7 +35,7 @@ class CfgVehicles {
                     displayName = CSTRING(Action_NVGUp);
                     icon = "";
                     condition = QUOTE(GVAR(aceNVG) && (currentVisionMode ACE_player == 1));
-                    statement = QUOTE([ARR_2(ACE_player,1)] call EFUNC(nightvision,changeNVGBrightness));
+                    statement = QUOTE([ARR_2(ACE_player,1)] call DEFUNC(nightvision,changeNVGBrightness));
                     exceptions[] = {"isNotDragging", "notOnMap", "isNotInside", "isNotSitting"};
                     showDisabled = 1;
                     priority = 1;
@@ -44,7 +45,7 @@ class CfgVehicles {
                     displayName = CSTRING(Action_NVGDown);
                     icon = "";
                     condition = QUOTE(GVAR(aceNVG) && (currentVisionMode ACE_player == 1));
-                    statement = QUOTE([ARR_2(ACE_player,-1)] call EFUNC(nightvision,changeNVGBrightness));
+                    statement = QUOTE([ARR_2(ACE_player,-1)] call DEFUNC(nightvision,changeNVGBrightness));
                     exceptions[] = {"isNotDragging", "notOnMap", "isNotInside", "isNotSitting"};
                     showDisabled = 1;
                     priority = 2;
@@ -54,7 +55,7 @@ class CfgVehicles {
                     displayName = CSTRING(Action_NVGOff);
                     icon = "";
                     condition = QUOTE(currentVisionMode ACE_player == 1);
-                    statement = QUOTE([0] call FUNC(toggleNVG));
+                    statement = QUOTE([0] call DFUNC(toggleNVG));
                     exceptions[] = {"isNotDragging", "notOnMap", "isNotInside", "isNotSitting"};
                     showDisabled = 1;
                     priority = 3;

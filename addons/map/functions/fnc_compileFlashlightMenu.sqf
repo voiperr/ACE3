@@ -20,33 +20,48 @@
 
 #include "script_component.hpp"
 
-PARAMS_1(_flashlights);
+PARAMS_3(_vehicle,_player,_parameters);
 
-//remove existing classes
+_actions = [];
+_flashlights = [_player] call FUNC(getUnitFlashlights);
+
+//add all carried flashlight menus and on/off submenu actions
 {
-    [ACE_player, 1, _x] call EFUNC(interact_menu,removeActionFromObject);
-} forEach GVAR(flashlightActions);
-
-GVAR(flashlightActions) = [];
-
-//add all carried flashlight classes
-{
-    _parentName = getText (configFile >> "CfgWeapons" >> _x >> "displayName");
+    _displayName = getText (configFile >> "CfgWeapons" >> _x >> "displayName");
     _icon = getText (configFile >> "CfgWeapons" >> _x >> "picture");
-    _parentAction = [_x, _parentName, _icon, {true}, {true}, {}, _x, [0,0,0], 100] call EFUNC(interact_menu,createAction);
-    _index1 = ["ACE_SelfActions", "ACE_MapFlashlight"];
-    [ACE_player, 1, _index1, _parentAction] call EFUNC(interact_menu,addActionToObject);
-    _index1 pushBack _x;
-
-    _on = [(_x + "_On"), "On", "", {[_this select 2] call FUNC(switchFlashlight)}, {GVAR(flashlightInUse) != (_this select 2)}, {}, _x, [0,0,0], 100] call EFUNC(interact_menu,createAction);
-    _index2 = ["ACE_SelfActions", "ACE_MapFlashlight", _x];
-    [ACE_player, 1, _index2, _on] call EFUNC(interact_menu,addActionToObject);
-    _index2 pushBack (_x + "_On");
-
-    _off = [(_x + "_Off"), "Off", "", {[""] call FUNC(switchFlashlight)}, {GVAR(flashlightInUse) == (_this select 2)}, {}, _x, [0,0,0], 100] call EFUNC(interact_menu,createAction);
-    _index3 = ["ACE_SelfActions", "ACE_MapFlashlight", _x];
-    [ACE_player, 1, _index3, _off] call EFUNC(interact_menu,addActionToObject);
-    _index3 pushBack (_x + "_Off");
-
-    {GVAR(flashlightActions) pushBack _x} forEach [_index3, _index2, _index1];
+    
+    _children = {
+        PARAMS_3(_vehicle,_player,_flashlight);
+        _actions = [];
+        
+        _onAction = [
+            (_flashlight + "_On"),
+            "On", 
+            "", 
+            {[_this select 2] call FUNC(switchFlashlight)},
+            {GVAR(flashlightInUse) != (_this select 2)},
+            {},
+            _flashlight
+        ] call EFUNC(interact_menu,createAction);
+        
+        _offAction = [
+            (_flashlight + "_Off"),
+            "Off",
+            "",
+            {[""] call FUNC(switchFlashlight)},
+            {GVAR(flashlightInUse) == (_this select 2)},
+            {},
+            _flashlight
+        ] call EFUNC(interact_menu,createAction);
+    
+        _actions pushBack [_onAction, [], _player];
+        _actions pushBack [_offAction, [], _player];
+    
+        _actions
+    };
+    
+    _parentAction = [_x, _displayName, _icon, {true}, {true}, _children, _x] call EFUNC(interact_menu,createAction);
+    _actions pushBack [_parentAction, [], _player];
 } forEach _flashlights;
+
+_actions

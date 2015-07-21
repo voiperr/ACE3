@@ -66,7 +66,6 @@ call FUNC(determineZoom);
     if (GVAR(mapIllumination)) then {
         GVAR(mousePos) = [0.5,0.5];
         GVAR(flashlightInUse) = "";
-        GVAR(flashlightActions) = [];
         GVAR(aceNVG) = ["ace_nightvision"] call EFUNC(common,isModLoaded);
         GVAR(glow) = objNull;
 
@@ -75,7 +74,6 @@ call FUNC(determineZoom);
             if !(GVAR(flashlightInUse) in _flashlights) then {
                 GVAR(flashlightInUse) = "";
             };
-            [_flashlights] call FUNC(compileFlashlightMenu);
         }] call EFUNC(common,addEventHandler);
 
         //we check map state via a PFH, since there's no way to have a map close EH
