@@ -30,6 +30,7 @@ PREP(openSelectMenu);
 PREP(prepareSelectMenu);
 PREP(push);
 PREP(removeTag);
+PREP(row);
 PREP(sendAway);
 PREP(showMouseHint);
 PREP(sortOptionsByPriority);

@@ -523,6 +523,33 @@ class CfgVehicles {
             };
         };
     };
+    
+    class Boat_F: Ship_F {};
+    
+    class Rubber_Duck_base_F: Ship_F {
+        class ACE_SelfActions {
+            class ACE_PaddleUp {
+                displayName = "Paddle Fore";
+                condition = "true";
+                statement = QUOTE([ARR_2(_target,0)] call DFUNC(row););
+            };
+            class ACE_PaddleDown {
+                displayName = "Paddle Aft";
+                condition = "true";
+                statement = QUOTE([ARR_2(_target,180)] call DFUNC(row););
+            };
+            class ACE_PaddleLeft {
+                displayName = "Paddle Port";
+                condition = "true";
+                statement = QUOTE([ARR_2(_target,270)] call DFUNC(row););
+            };
+            class ACE_PaddleRight {
+                displayName = "Paddle Starboard";
+                condition = "true";
+                statement = QUOTE([ARR_2(_target,90)] call DFUNC(row););
+            };
+        };
+    };
 
     class StaticWeapon: LandVehicle {
         class ACE_Actions {
