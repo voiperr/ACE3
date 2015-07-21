@@ -46,6 +46,8 @@ call FUNC(determineZoom);
         };
     }];
     
+    GVAR(mousePos) = [0.5,0.5];
+    
     //get mouse position on map
     findDisplay 12 displayCtrl 51 ctrlAddEventHandler ["MouseMoving", {
         GVAR(mousePos) = (_this select 0) ctrlMapScreenToWorld [_this select 1, _this select 2];
@@ -64,7 +66,6 @@ call FUNC(determineZoom);
     
     //flashlight settings if illumination
     if (GVAR(mapIllumination)) then {
-        GVAR(mousePos) = [0.5,0.5];
         GVAR(flashlightInUse) = "";
         GVAR(aceNVG) = ["ace_nightvision"] call EFUNC(common,isModLoaded);
         GVAR(glow) = objNull;
