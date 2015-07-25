@@ -46,8 +46,8 @@ if (GVAR(mapIllumination)) then {
 
     //colour/alpha
     EXPLODE_4_PVT(_lightLevel,_r,_g,_b,_a);
-    _colourAlpha = _r + _g + _b;
-    _shadeAlpha = _a - _colourAlpha;
+    _colourAlpha = (_r + _g + _b) min _a;
+    _shadeAlpha = _a;
 
     if (_nvgOn) then {
         _flashlightAdd = if (_flashlight != "") then {0.75} else {0};
@@ -93,8 +93,12 @@ if (GVAR(mapIllumination)) then {
     } else {
         _fillTex = _blackTex;
 
+        _colourList = [_r, _g, _b];
+        _colourList sort false;
+        _maxColour = _colourList select 0;
+
         //ambient colour fill
-        _mapCtrl drawIcon [format["#(rgb,8,8,3)color(%1,%2,%3,1)", _r * 3, _g * 3, _b * 3], [1,1,1,_colourAlpha], _mapCentre, _screenSize, _screenSize, 0, "", 0];
+        _mapCtrl drawIcon [format["#(rgb,8,8,3)color(%1,%2,%3,1)", _r / _maxColour, _g / _maxColour, _b / _maxColour], [1,1,1,_colourAlpha], _mapCentre, _screenSize, _screenSize, 0, "", 0];
 
         if (_flashlight == "") then {
             //ambient shade fill
