@@ -72,7 +72,7 @@ call FUNC(determineZoom);
 
         ["playerInventoryChanged", {
             _flashlights = [ACE_player] call FUNC(getUnitFlashlights);
-            if !(GVAR(flashlightInUse) in _flashlights) then {
+            if ((GVAR(flashlightInUse) != "") && !(GVAR(flashlightInUse) in _flashlights)) then {
                 GVAR(flashlightInUse) = "";
             };
         }] call EFUNC(common,addEventHandler);
