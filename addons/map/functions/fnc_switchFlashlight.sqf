@@ -20,4 +20,4 @@ PARAMS_1(_flashlight);
 
 GVAR(flashlightInUse) = _flashlight;
 [GVAR(flashlightInUse)] call FUNC(flashlightGlow);
-playSound "ACE_flashlights_flashlightClick";
+playSound "ACE_map_flashlightClick";
