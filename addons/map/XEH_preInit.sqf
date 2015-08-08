@@ -12,6 +12,7 @@ PREP(flashlightGlow);
 PREP(getUnitFlashlights);
 PREP(moduleMap);
 PREP(onDrawMap);
+PREP(simulateMapLight);
 PREP(switchFlashlight);
 PREP(toggleNVG);
 PREP(updateMapEffects);

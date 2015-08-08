@@ -13,7 +13,7 @@ class ACE_Settings {
     };
     class GVAR(mapIllumination) {
         value = 1;
-        typeName = "BOOL";
+        typeName = "SCALAR";
     };
     class GVAR(mapShake) {
         value = 1;

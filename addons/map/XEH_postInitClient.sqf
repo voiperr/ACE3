@@ -12,19 +12,20 @@ call FUNC(determineZoom);
 // The thread dies as soon as the mission start, so it's not really compiting for scheduler space.
 [] spawn {
     // Wait until the map display is detected
-    waitUntil {(!isNull findDisplay 12)};
+    waitUntil {!isNull findDisplay 12};
 
     GVAR(lastStillPosition) = ((findDisplay 12) displayCtrl 51) ctrlMapScreenToWorld [0.5, 0.5];
     GVAR(lastStillTime) = ACE_time;
     GVAR(isShaking) = false;
-    
+
     //map sizes are multiples of 1280
     GVAR(worldSize) = worldSize / 1280;
-
+    GVAR(mousePos) = [0.5,0.5];
+    
     //Allow panning the lastStillPosition while mapShake is active
     GVAR(rightMouseButtonLastPos) = [];
-    findDisplay 12 displayCtrl 51 ctrlAddEventHandler ["Draw", {[] call FUNC(updateMapEffects);}];
-    findDisplay 12 displayCtrl 51 ctrlAddEventHandler ["MouseMoving", {
+    ((findDisplay 12) displayCtrl 51) ctrlAddEventHandler ["Draw", {[] call FUNC(updateMapEffects);}];
+    ((findDisplay 12) displayCtrl 51) ctrlAddEventHandler ["MouseMoving", {
         if (GVAR(isShaking) && {(count GVAR(rightMouseButtonLastPos)) == 2}) then {
             private["_lastPos", "_newPos"];
             _lastPos = (_this select 0) ctrlMapScreenToWorld GVAR(rightMouseButtonLastPos);
@@ -35,24 +36,22 @@ call FUNC(determineZoom);
             TRACE_3("Mouse Move",_lastPos,_newPos,GVAR(rightMouseButtonLastPos));
         };
     }];
-    findDisplay 12 displayCtrl 51 ctrlAddEventHandler ["MouseButtonDown", {
+    ((findDisplay 12) displayCtrl 51) ctrlAddEventHandler ["MouseButtonDown", {
         if ((_this select 1) == 1) then {
             GVAR(rightMouseButtonLastPos) = _this select [2,2];
         };
     }];
-    findDisplay 12 displayCtrl 51 ctrlAddEventHandler ["MouseButtonUp", {
+    ((findDisplay 12) displayCtrl 51) ctrlAddEventHandler ["MouseButtonUp", {
         if ((_this select 1) == 1) then {
             GVAR(rightMouseButtonLastPos) = [];
         };
     }];
-    
-    GVAR(mousePos) = [0.5,0.5];
-    
+
     //get mouse position on map
-    findDisplay 12 displayCtrl 51 ctrlAddEventHandler ["MouseMoving", {
+    ((findDisplay 12) displayCtrl 51) ctrlAddEventHandler ["MouseMoving", {
         GVAR(mousePos) = (_this select 0) ctrlMapScreenToWorld [_this select 1, _this select 2];
     }];
-    findDisplay 12 displayCtrl 51 ctrlAddEventHandler ["MouseHolding", {
+    ((findDisplay 12) displayCtrl 51) ctrlAddEventHandler ["MouseHolding", {
         GVAR(mousePos) = (_this select 0) ctrlMapScreenToWorld [_this select 1, _this select 2];
     }];
 };
@@ -63,9 +62,9 @@ call FUNC(determineZoom);
         GVAR(BFT_markers) = [];
         [FUNC(blueForceTrackingUpdate), GVAR(BFT_Interval), []] call CBA_fnc_addPerFrameHandler;
     };
-    
-    //flashlight settings if illumination
-    if (GVAR(mapIllumination)) then {
+
+    //illumination settings
+    if (GVAR(mapIllumination) == 2) then {
         GVAR(flashlightInUse) = "";
         GVAR(aceNVG) = ["ace_nightvision"] call EFUNC(common,isModLoaded);
         GVAR(glow) = objNull;
@@ -77,7 +76,7 @@ call FUNC(determineZoom);
             };
         }] call EFUNC(common,addEventHandler);
 
-        //we check map state via a PFH, since there's no way to have a map close EH
+        //we check map state via a PFH, since there is no map close EH
         [{
             if (visibleMap) then {
                 if (GVAR(flashlightInUse) != "") then {
@@ -95,6 +94,5 @@ call FUNC(determineZoom);
                 };
             };
         }, 0] call CBA_fnc_addPerFrameHandler;
-    
     };
 }] call EFUNC(common,addEventHandler);

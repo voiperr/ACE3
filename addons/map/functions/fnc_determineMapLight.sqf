@@ -55,13 +55,12 @@ _fnc_calcColor = {
 
 _lightLevel = 0.04 + (0.96 * call EFUNC(common,ambientBrightness));
 
-/*
-// check if player has NVG enabled
-if (currentVisionMode _unit == 1) exitWith {
+// check if player has NVG enabled (only for basic illumination)
+if (GVAR(mapIllumination) == 1 && currentVisionMode _unit == 1) exitWith {
     // stick to nvg color
     [true, [154/255,253/255,177/255,0.5]]
 };
-*/
+
 // Do not obscure the map if the ambient light level is above 0.95
 if (_lightLevel > 0.95) exitWith {
     [false, [0.5,0.5,0.5,0]]
